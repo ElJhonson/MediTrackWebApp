@@ -10,3 +10,15 @@ export const STORAGE_KEYS = {
     ROLE: "rol",
     NAME: "name"
 };
+
+export const ROLES = Object.freeze({
+    PACIENTE: "PACIENTE",
+    CUIDADOR: "CUIDADOR"
+});
+
+export const ROUTES = Object.freeze({
+    LOGIN: "/index.html",
+    DASHBOARD_PACIENTE: "/pages/dashboard-paciente.html",
+    DASHBOARD_CUIDADOR: "/pages/dashboard-cuidador.html"
+});
+

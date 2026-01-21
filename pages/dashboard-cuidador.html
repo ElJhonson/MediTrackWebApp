@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>MediTrack | Panel del Cuidador</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/dashboard-cuidador.css">
+    <link rel="stylesheet" href="../styles/dashboard-cuidador.css">
 </head>
+
 <body>
 
     <header class="topbar">
         <div class="user-info">
             <h1>Panel de Control</h1>
-            <p class="status">Cuidador: <strong>Dr. Carlos Ortiz</strong></p>
+            <p class="status">
+                Cuidador: <strong id="caregiver-name"></strong>
+            </p>
         </div>
-        <!-- Código de vinculación visible -->
         <div class="link-code-container">
-            <span class="code-label">Código de Vinculación:</span>
-            <div class="code-badge">MT-9942X</div>
+            <p class="code-label">Tu código de vinculación</p>
+            <div class="code-box">
+                <span class="code-badge" id="link-code"></span>
+                <button class="copy-btn" id="btnCopy" title="Copiar código">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="code-helper">Comparte este código con tu paciente para vincular sus cuentas.</p>
         </div>
     </header>
 
     <main class="dashboard">
 
-        <!-- Sección de Resumen y Registro -->
         <section class="action-bar">
             <h2 class="section-title">Gestión de Pacientes</h2>
             <button class="btn-add-patient">+ Registrar Nuevo Paciente</button>
         </section>
 
-        <!-- Grid de Información -->
         <div class="caregiver-grid">
-            
-            <!-- Listado de Pacientes Asignados -->
+
             <section class="patient-list">
                 <div class="card-header">
                     <h3>Pacientes Asignados (3)</h3>
                 </div>
-                
+
                 <div class="patient-card">
                     <div class="patient-avatar">LB</div>
                     <div class="patient-info">
@@ -68,14 +78,13 @@
                 </div>
             </section>
 
-            <!-- Resumen de Actividades Rápidas -->
             <aside class="sidebar-stats">
                 <div class="service-card schedules">
                     <div class="icon">📅</div>
                     <h3>Calendario Global</h3>
                     <p>Ver todas las citas</p>
                 </div>
-                
+
                 <div class="service-card history">
                     <div class="icon">📊</div>
                     <h3>Reportes Médicos</h3>
@@ -87,5 +96,10 @@
 
     </main>
 
+
+    <script type="module" src="../js/dashboard-cuidador.js"></script>
+
 </body>
+
+
 </html>

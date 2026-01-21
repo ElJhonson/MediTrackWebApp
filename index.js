@@ -1,5 +1,9 @@
-import { AUTH_ENDPOINTS, STORAGE_KEYS } from "/js/config.js";
-import { saveSession } from "/js/auth.js";
+import {
+    AUTH_ENDPOINTS,
+    STORAGE_KEYS,
+    ROLES,
+    ROUTES
+} from "/js/config.js";import { saveSession } from "/js/auth.js";
 
 const loginForm = document.getElementById("loginForm");
 const phoneInput = document.getElementById("phoneNumber");
@@ -29,21 +33,23 @@ loginForm.addEventListener("submit", async (e) => {
         }
 
         const data = await response.json();
-
-        //Guardar sesión (JWT manda)
         saveSession(data);
 
         //Leer rol desde localStorage (extraído del JWT)
         const rol = localStorage.getItem(STORAGE_KEYS.ROLE);
 
-        //Redirección por rol
-        if (rol === "PACIENTE") {
-            window.location.href = "/pages/dashboard-paciente.html";
-        } else if (rol === "CUIDADOR") {
-            window.location.href = "/pages/dashboard-cuidador.html";
-        } else {
-            console.error("Rol no reconocido:", rol);
-            window.location.href = "/index.html";
+        switch (rol) {
+            case ROLES.PACIENTE:
+                window.location.href = ROUTES.DASHBOARD_PACIENTE;
+                break;
+
+            case ROLES.CUIDADOR:
+                window.location.href = ROUTES.DASHBOARD_CUIDADOR;
+                break;
+
+            default:
+                console.error("Rol no reconocido:", rol);
+                window.location.href = ROUTES.LOGIN;
         }
 
     } catch (error) {
