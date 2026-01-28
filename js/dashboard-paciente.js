@@ -14,4 +14,9 @@ const shortName = name.split(" ").slice(0, 2).join(" ");
 
 
 document.querySelector("h1").textContent = `Bienvenido, ${shortName}`;
- 
+
+const medicinasCard = document.querySelector('.service-card.reminders');
+
+medicinasCard.addEventListener('click', () => {
+    window.location.href = '../pages/medicamentos.html';
+});
