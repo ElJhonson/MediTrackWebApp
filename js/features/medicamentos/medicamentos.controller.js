@@ -21,25 +21,33 @@ export async function cargarMedicamentos() {
     medicamentosState.cargando = false;
 }
 
+// Dentro de tu archivo medicamentos.controller.js, en la función initMedicamentos:
+
 export function initMedicamentos() {
     initMedicamentosModal();
     cargarMedicamentos();
 
     container.addEventListener("click", async (e) => {
+        const id = e.target.dataset.id || e.target.closest("button")?.dataset.id;
 
+        // Caso Eliminar (Ya lo tienes)
         if (e.target.classList.contains("btn-delete")) {
-            const id = e.target.dataset.id;
             if (!confirm("¿Deseas eliminar esta medicina?")) return;
-
             await eliminarMedicina(id);
             await cargarMedicamentos();
         }
 
+        // Caso Editar (Ya lo tienes)
         if (e.target.classList.contains("btn-edit")) {
-            const card = e.target.closest(".med-card");
-            const id = card.dataset.id;
             const med = medicamentosState.lista.find(m => m.id == id);
             abrirModalEditar(med);
+        }
+
+        // NUEVO: Caso Alarma (Reloj)
+        if (e.target.classList.contains("btn-reminder")) {
+            import("./medicamentos.alarma.js").then(module => {
+                module.abrirModalAlarma(id);
+            });
         }
     });
 }

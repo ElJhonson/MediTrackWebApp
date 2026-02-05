@@ -1,3 +1,6 @@
+import { abrirModalAlarma } from "./medicamentos.alarma.js"; 
+import { abrirModalEditar } from "./medicamentos.modal.js";
+
 const container = document.getElementById("medContainer");
 
 export function renderMeds(lista) {
@@ -9,10 +12,10 @@ export function renderMeds(lista) {
     }
 
     lista.forEach((med) => {
+        // Usamos insertAdjacentHTML para que el Controller pueda manejar los clicks vía delegación
         container.insertAdjacentHTML("beforeend", `
             <div class="med-card glass-card" data-id="${med.id}">
                 <button class="btn-delete" data-id="${med.id}" title="Eliminar">✖</button>
-
                 <div>
                     <span class="type">${med.dosageForm}</span>
                     <h4>${med.nombre}</h4>
@@ -20,15 +23,13 @@ export function renderMeds(lista) {
                         Expira: ${formatDate(med.expirationDate)}
                     </p>
                 </div>
-
                 <div class="card-footer">
                     <span class="registered-by">
                         Registrado por: ${med.registradoPorNombre}
                     </span>
-
                     <div class="card-actions">
-                        <button class="btn-edit">✏️</button>
-                        <button class="btn-reminder">⏰</button>
+                        <button class="btn-edit" data-id="${med.id}">✏️</button>
+                        <button class="btn-reminder" data-id="${med.id}">⏰</button>
                     </div>
                 </div>
             </div>
@@ -37,6 +38,7 @@ export function renderMeds(lista) {
 }
 
 function formatDate(dateStr) {
+    if(!dateStr) return "--/--/--";
     const [year, month, day] = dateStr.split("-");
     return `${month}/${day}/${year}`;
 }

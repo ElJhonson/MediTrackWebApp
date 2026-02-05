@@ -60,6 +60,8 @@
 
     </main>
 
+<!-- Modal para registrar o actalizar medicinas -->
+
     <div class="modal-overlay" id="modalMed">
         <div class="glass-card modal-content">
             <div class="modal-header">
@@ -88,6 +90,33 @@
             </form>
         </div>
     </div>
+
+<!-- Modal para registrar alarma de la medicina -->
+    <div class="modal-overlay" id="modalAlarma">
+    <div class="glass-card modal-content">
+        <div class="modal-header">
+            <h3>⏰ Configurar Alarma</h3>
+            <button class="close-btn" id="btnCloseAlarma">&times;</button>
+        </div>
+        <form id="alarmaForm">
+            <input type="hidden" id="alarmaMedicinaId">
+            
+            <div class="form-group">
+                <label>Fecha y Hora de Inicio</label>
+                <input type="datetime-local" id="fechaInicio" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha y Hora de Fin</label>
+                <input type="datetime-local" id="fechaFin" required>
+            </div>
+            <div class="form-group">
+                <label>Frecuencia (cada cuántas horas)</label>
+                <input type="number" id="frecuenciaHoras" min="1" max="168" placeholder="Ej. 8" required>
+            </div>
+            <button type="submit" class="btn-save">Establecer Recordatorio</button>
+        </form>
+    </div>
+</div>
 
     <script type="module" src="../js/pages/medicamentos.page.js"></script>
 </body>

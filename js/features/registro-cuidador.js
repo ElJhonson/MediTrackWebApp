@@ -1,5 +1,5 @@
-import { API_BASE_URL } from "../js/config.js";
-import { saveSession } from "../js/auth.js";
+import { API_BASE_URL } from "../core/config.js";
+import { saveSession } from "../core/auth.js";
 
 const form = document.getElementById("registerCuidadorForm");
 const passwordInput = document.getElementById("password");
