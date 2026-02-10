@@ -1,0 +1,53 @@
+/* Social Login */
+.divider {
+    text-align: center;
+    margin: 26px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--border-soft);
+}
+
+.divider span {
+    background: var(--white);
+    padding: 0 14px;
+    color: var(--placeholder);
+    font-size: 0.85rem;
+    position: relative;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.social-btn {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border-soft);
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+    background-color: var(--accent-soft);
+    transform: translateY(-2px);
+}
+
+.social-btn img {
+    width: 22px;
+}

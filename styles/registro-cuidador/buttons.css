@@ -1,0 +1,19 @@
+/* Botón Principal */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--accent-lime);
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    color: var(--main-green);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(163, 230, 53, 0.4);
+}

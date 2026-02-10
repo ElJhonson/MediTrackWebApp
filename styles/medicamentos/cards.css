@@ -1,0 +1,143 @@
+/* Glass Card - Sidebar */
+.glass-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.patient-card {
+    text-align: center;
+}
+
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 4px solid var(--primary-light);
+}
+
+.profile-header h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.profile-header p {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 1.5rem;
+}
+
+.stat span {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+}
+
+/* Tarjeta de Medicina */
+.med-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+}
+
+.med-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.med-card .type {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.med-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--danger);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    color: var(--danger-dark);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.card-actions button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Grid de medicinas (antiguo) */
+.med-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 15px;
+    border: 1px solid var(--bg-main);
+    border-radius: var(--radius-md);
+}
+
+.med-grid::-webkit-scrollbar {
+    width: 10px;
+}
+
+.med-grid::-webkit-scrollbar-track {
+    background: var(--gray-offwhite);
+    border-radius: 10px;
+}
+
+.med-grid::-webkit-scrollbar-thumb {
+    background: var(--gray-light);
+    border: 2px solid var(--gray-offwhite);
+    border-radius: 10px;
+}
+
+.med-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}

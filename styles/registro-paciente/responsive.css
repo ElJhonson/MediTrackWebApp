@@ -1,0 +1,21 @@
+/* Responsive */
+@media (max-width: 900px) {
+    .form-side {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .illustration-side {
+        display: none;
+    }
+    
+    .main-wrapper {
+        width: 100%;
+        border-radius: 20px;
+    }
+    
+    .form-header h1 {
+        font-size: 1.8rem;
+    }
+}

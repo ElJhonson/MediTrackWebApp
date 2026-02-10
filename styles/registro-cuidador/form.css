@@ -1,0 +1,53 @@
+/* Inputs, Selects y Toggle */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+input, .custom-select {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid var(--border-gray);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: var(--surface-light);
+}
+
+input:focus, .custom-select:focus {
+    border-color: var(--accent-lime);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(163, 230, 53, 0.1);
+}
+
+/* Estilo específico para el Select (Rol) */
+.custom-select {
+    appearance: none;
+    cursor: pointer;
+    color: var(--placeholder);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='C19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+}
+
+.custom-select:valid {
+    color: var(--text-dark);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+/* Ocultar flechas del input edad */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

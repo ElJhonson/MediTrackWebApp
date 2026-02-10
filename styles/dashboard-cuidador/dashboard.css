@@ -1,0 +1,35 @@
+/* Contenido Principal */
+.dashboard {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-add-patient {
+    background-color: var(--btn-add-bg);
+    color: var(--white);
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add-patient:hover { 
+    background-color: var(--btn-add-bg-hover); 
+}
+
+/* Grid layout para Cuidador */
+.caregiver-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}

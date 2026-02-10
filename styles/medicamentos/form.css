@@ -1,0 +1,95 @@
+/* Formulario */
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 14px;
+    border: 2px solid #f1f5f9;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-light);
+}
+
+.btn-save {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+}
+
+/* Botones de acción */
+.btn-add-main {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-icon {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-edit {
+    background: #f1f5f9;
+    color: var(--text-gray);
+}
+
+.btn-edit:hover {
+    background: #e2e8f0;
+    color: var(--text-dark);
+}
+
+.btn-reminder {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary-light);
+}
+
+.btn-reminder:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.card-footer {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}

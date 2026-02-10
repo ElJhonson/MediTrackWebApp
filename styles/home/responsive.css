@@ -1,0 +1,17 @@
+/* Responsive */
+@media (max-width: 768px) {
+    .illustration-side {
+        display: none;
+    }
+
+    .main-wrapper {
+        height: auto;
+        width: 95%;
+    }
+}
+
+@media (max-width: 600px) {
+    .role-selection {
+        grid-template-columns: 1fr;
+    }
+}

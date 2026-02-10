@@ -1,0 +1,130 @@
+
+/* HOME - Login/Inicio */
+:root {
+    /* === Home Colors === */
+    --main-green: #1f3d32;
+    --accent-lime: #84cc16;
+    --accent-lime-register: #a3e635;
+    --accent-soft: #ecfdf5;
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
+    --border-soft: #e5e7eb;
+
+    /* === Dashboard Colors === */
+    --bg-main: #f1f5f9;
+    --primary: #007bff;
+    --primary-light: #e0f0ff;
+    --text-dark-main: #1e293b;
+    --text-gray: #6b7280;
+    --white: #ffffff;
+    --bg-modal: rgba(0, 0, 0, 0.6);
+    --accent-green: #2d4a3e;
+    --border-gray: #e5e7eb;
+
+    /* === Spacing & Radius === */
+    --radius-lg: 28px;
+    --radius-md: 18px;
+
+    /* === Shadows & Transitions === */
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Additional consolidated color tokens discovered across styles */
+:root {
+    --brand-blue: #2E8BCE;
+    --blue-soft: #e0e7ff;
+    --green-soft: #e8f5e9;
+    --green-soft-2: #d1fae5;
+    --surface-light: #f9fbff;
+    --border-200: #f0f0f0;
+    --placeholder: #9ca3af;
+    --danger: #ef4444;
+    --danger-dark: #b91c1c;
+    --muted-green-dark: #3f5f54;
+    --btn-add-bg: #4CAF50;
+    --btn-add-bg-hover: #3d8b40;
+    --text-green-dark: #1a2e05;
+    --border-200: #f0f0f0;
+    --accent-lime-hover: #92d12f;
+    --danger-light: #fee2e2;
+}
+
+/* ========================================
+   GLOBAL RESET
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   HOME PAGE STYLES
+   ======================================== */
+.home-page {
+    font-family: 'Poppins', sans-serif;
+}
+
+body.home-page {
+    background-color: #f1f8f4;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========================================
+   REGISTRO PAGE STYLES (CUIDADOR & PACIENTE)
+   ======================================== */
+.registro-page {
+    font-family: 'Poppins', sans-serif;
+}
+
+body.registro-page {
+    background-color: #e8f5e9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ========================================
+   DASHBOARD CUIDADOR STYLES
+   ======================================== */
+.dashboard-cuidador-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.dashboard-cuidador-page {
+    background-color: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ========================================
+   DASHBOARD PACIENTE STYLES
+   ======================================== */
+.dashboard-paciente-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.dashboard-paciente-page {
+    background-color: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ========================================
+   MEDICAMENTOS PAGE STYLES
+   ======================================== */
+.medicamentos-page {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body.medicamentos-page {
+    background-color: var(--bg-main);
+    color: var(--text-dark-main);
+    line-height: 1.6;
+}

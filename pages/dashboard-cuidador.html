@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>MediTrack | Panel del Cuidador</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/dashboard-cuidador.css">
+    <link rel="stylesheet" href="../styles/dashboard-cuidador/index.css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 
         <section class="action-bar">
             <h2 class="section-title">Gestión de Pacientes</h2>
-            <button class="btn-add-patient">+ Registrar Nuevo Paciente</button>
+            <button class="btn-add-patient">Registrar Nuevo Paciente</button>
         </section>
 
         <div class="caregiver-grid">
@@ -97,7 +97,45 @@
     </main>
 
 
-    <script type="module" src="../js/dashboard-cuidador.js"></script>
+    <div id="modalRegister" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="btnCloseModal">&times;</button>
+
+            <div class="modal-layout">
+                <div class="modal-illustration">
+                    <img src="../assets/img/registro-paciente.png" alt="Registro">
+                </div>
+
+                <div class="modal-form-side">
+                    <header class="form-header">
+                        <span class="badge badge-paciente">Nuevo Paciente</span>
+                        <h1>Registrar</h1>
+                        <p>Crea una cuenta para tu paciente supervisado.</p>
+                    </header>
+
+                    <form id="registerPacienteForm">
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Número de teléfono"
+                                required>
+                        </div>
+                        <div class="input-group">
+                            <input type="number" id="edad" name="edad" placeholder="Edad" min="0" max="120" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" placeholder="Contraseña temporal"
+                                required>
+                        </div>
+                        <button type="submit" class="btn-primary">Registrar Paciente</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/features/dashboard-cuidador.js"></script>
 
 </body>
 

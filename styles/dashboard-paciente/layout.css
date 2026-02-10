@@ -1,0 +1,19 @@
+/* Contenido principal */
+.dashboard {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    color: #555;
+}
+
+/* Grid de servicios */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}

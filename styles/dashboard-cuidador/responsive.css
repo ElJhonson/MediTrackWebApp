@@ -1,0 +1,51 @@
+/* Responsive */
+
+/* Mobile - Topbar */
+@media (max-width: 600px) {
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .link-code-container {
+        align-items: flex-start;
+    }
+
+    .code-helper {
+        display: block;
+    }
+}
+
+/* Tablets - Modal */
+@media (max-width: 768px) {
+    .modal-illustration { 
+        display: none; 
+    }
+    
+    .modal-form-side { 
+        padding: 40px 25px; 
+    }
+    
+    .modal-content { 
+        width: 95%; 
+        margin: 10px; 
+    }
+}
+
+/* Desktop - Grid Layout */
+@media (max-width: 900px) {
+    .caregiver-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .topbar { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 1rem; 
+    }
+    
+    .link-code-container { 
+        text-align: center; 
+    }
+}

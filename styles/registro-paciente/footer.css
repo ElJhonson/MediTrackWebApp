@@ -1,0 +1,17 @@
+/* Footer */
+.form-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.form-footer a {
+    color: var(--main-green);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link {
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
