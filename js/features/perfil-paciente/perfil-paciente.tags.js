@@ -8,10 +8,18 @@ function normalizarEnfermedad(valor) {
         .trim();
 }
 
-function crearColorSuaveAleatorio() {
-    const hue = Math.floor(Math.random() * 360);
-    const saturation = Math.floor(55 + Math.random() * 20);
-    const lightness = Math.floor(82 + Math.random() * 10);
+function hashTexto(texto) {
+    return [...texto].reduce(
+        (acc, char) => ((acc << 5) - acc + char.charCodeAt(0)) | 0,
+        0
+    );
+}
+
+function crearColorDesdeTexto(clave) {
+    const hash = Math.abs(hashTexto(clave));
+    const hue = hash % 360;
+    const saturation = 58 + (hash % 16);
+    const lightness = 82 + (hash % 10);
 
     return {
         bg: `hsl(${hue} ${saturation}% ${lightness}%)`,
@@ -26,7 +34,7 @@ function obtenerEstiloTag(enfermedad) {
     if (!perfilPacienteState.coloresEnfermedad.has(key)) {
         perfilPacienteState.coloresEnfermedad.set(
             key,
-            crearColorSuaveAleatorio()
+            crearColorDesdeTexto(key)
         );
     }
 

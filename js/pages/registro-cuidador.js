@@ -47,7 +47,7 @@ form.addEventListener("submit", async (e) => {
             refreshToken: data.refreshToken
         });
 
-        window.location.href = "../pages/dashboard-cuidador.html";
+        window.location.replace("../pages/dashboard-cuidador.html");
 
     } catch (error) {
         alert("No se pudo crear la cuenta");

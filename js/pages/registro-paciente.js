@@ -48,7 +48,7 @@ form.addEventListener("submit", async (e) => {
         saveSession(data);
 
         // Redirección directa (rol ya validado en JWT)
-        window.location.href = "/pages/dashboard-paciente.html";
+        window.location.replace("/pages/dashboard-paciente.html");
 
     } catch (error) {
         console.error(error);

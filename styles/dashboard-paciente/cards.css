@@ -22,12 +22,16 @@
 
 /* Títulos */
 .service-card h3 {
+    font-family: var(--font-primary);
+    font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 0.4rem;
 }
 
 /* Descripción */
 .service-card p {
+    font-family: var(--font-primary);
+    font-weight: 400;
     font-size: 0.9rem;
     color: #666;
 }

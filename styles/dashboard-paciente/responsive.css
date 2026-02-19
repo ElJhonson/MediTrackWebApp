@@ -6,5 +6,17 @@
 
     .topbar {
         padding: 1.2rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .account-menu {
+        width: 100%;
+    }
+
+    .account-menu-btn {
+        width: 100%;
+        min-width: 100%;
     }
 }

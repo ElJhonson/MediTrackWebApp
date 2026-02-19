@@ -16,9 +16,17 @@ export async function cargarMedicamentos() {
     if (medicamentosState.cargando) return;
 
     medicamentosState.cargando = true;
-    medicamentosState.lista = await obtenerMisMedicinas();
-    renderMeds(medicamentosState.lista);
-    medicamentosState.cargando = false;
+    container.innerHTML = `<p class="med-loading">Cargando medicamentos...</p>`;
+
+    try {
+        medicamentosState.lista = await obtenerMisMedicinas();
+        renderMeds(medicamentosState.lista);
+    } catch (error) {
+        console.error("Error al cargar medicamentos:", error);
+        container.innerHTML = `<p class="med-loading">No se pudieron cargar los medicamentos.</p>`;
+    } finally {
+        medicamentosState.cargando = false;
+    }
 }
 
 // Dentro de tu archivo medicamentos.controller.js, en la función initMedicamentos:

@@ -7,6 +7,10 @@
 }
 
 .card-header { 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     margin-bottom: 1.5rem; 
     border-bottom: 1px solid var(--border-soft); 
     padding-bottom: 1rem; 
@@ -117,20 +121,19 @@
 /* Badges de condiciones */
 .condition-badge {
     display: inline-block;
-    background: #e8eef7;
-    color: #4a5f8f;
+    background: var(--tag-bg, #f1f5f9);
+    color: var(--tag-text, #475569);
     padding: 0.35rem 0.7rem;
-    border-radius: 14px;
+    border-radius: 999px;
     font-size: 0.7rem;
     font-family: var(--font-primary);
-    font-weight: 500;
-    border: 1px solid #d0dae8;
+    font-weight: 600;
+    border: 1px solid var(--tag-border, rgba(15, 23, 42, 0.08));
 }
-
-.condition-badge:nth-child(2) {
-    background: #f5e8f0;
-    color: #8f4a7f;
-    border-color: #e8d0e0;
+.condition-empty {
+    background: #f8fafc;
+    color: #64748b;
+    font-style: italic;
 }
 
 /* Contenedor y badges de enfermedades */
@@ -143,21 +146,22 @@
 }
 
 .btn-see-more {
-    background: linear-gradient(135deg, #84cc16 0%, #a3e635 100%);
-    color: var(--text-green-dark);
-    border: none;
+    background: #eef2f7;
+    color: #475569;
+    border: 1px solid #d6deea;
     cursor: pointer;
     font-family: var(--font-primary);
     font-weight: 600;
     font-size: 0.7rem;
     padding: 0.35rem 0.7rem;
-    border-radius: 14px;
+    border-radius: 999px;
     transition: all 0.2s ease;
 }
 
 .btn-see-more:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(132, 204, 22, 0.4);
+    background: #e2e8f0;
+    border-color: #c4cfdf;
+    color: #334155;
 }
 
 .status-indicator {

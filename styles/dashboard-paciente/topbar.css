@@ -3,15 +3,108 @@
     background-color: #ffffff;
     padding: 1.5rem 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
 .topbar h1 {
+    font-family: var(--font-primary);
+    font-weight: 700;
     font-size: 1.6rem;
     color: var(--brand-blue);
 }
 
 .status {
+    font-family: var(--font-primary);
+    font-weight: 400;
     font-size: 0.9rem;
     color: #888;
     margin-top: 0.2rem;
+}
+
+.account-menu {
+    position: relative;
+}
+
+.account-menu-btn {
+    border: 1px solid var(--border-soft);
+    background: var(--white);
+    color: var(--text-dark-main);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-family: var(--font-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 170px;
+    justify-content: space-between;
+}
+
+.account-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--blue-soft);
+    color: var(--brand-blue);
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.account-arrow {
+    transition: transform 0.2s ease;
+    color: var(--text-gray);
+}
+
+.account-menu.open .account-arrow {
+    transform: rotate(180deg);
+}
+
+.account-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    background: var(--white);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    padding: 6px;
+    z-index: 30;
+    display: none;
+}
+
+.account-menu.open .account-dropdown {
+    display: block;
+}
+
+.logout-menu-item {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--text-gray);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-start;
+    transition: all 0.2s ease;
+}
+
+.logout-menu-item:hover {
+    background: var(--danger-light);
+    color: var(--danger);
 }

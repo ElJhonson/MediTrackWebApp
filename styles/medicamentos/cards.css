@@ -123,6 +123,14 @@
     border-radius: var(--radius-md);
 }
 
+.med-loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-gray);
+    font-weight: 600;
+    padding: 2rem 0;
+}
+
 .med-grid::-webkit-scrollbar {
     width: 10px;
 }

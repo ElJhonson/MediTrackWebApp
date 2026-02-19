@@ -18,6 +18,10 @@ const patientContainer = document.getElementById("patient-list-container");
 const patientCount = document.getElementById("patient-count");
 const btnCopy = document.getElementById("btnCopy");
 const linkCode = document.getElementById("link-code");
+const btnLogout = document.getElementById("btnLogout");
+const accountMenuWrap = document.getElementById("accountMenuWrap");
+const accountMenuBtn = document.getElementById("accountMenuBtn");
+const caregiverAvatar = document.getElementById("caregiver-avatar");
 
 protectPage();
 
@@ -57,11 +61,95 @@ function setPacientesLoading(loading) {
     }
 }
 
+function normalizarEnfermedad(texto = "") {
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+}
+
+function hashTexto(texto) {
+    return [...texto].reduce(
+        (acc, char) => ((acc << 5) - acc + char.charCodeAt(0)) | 0,
+        0
+    );
+}
+
+function obtenerEstiloEnfermedad(enfermedad) {
+    const clave = normalizarEnfermedad(enfermedad);
+    const hash = Math.abs(hashTexto(clave));
+    const hue = hash % 360;
+    const saturation = 58 + (hash % 16);
+    const lightness = 82 + (hash % 10);
+
+    return {
+        bg: `hsl(${hue} ${saturation}% ${lightness}%)`,
+        border: `hsl(${hue} ${Math.max(42, saturation - 12)}% ${Math.max(66, lightness - 15)}%)`,
+        text: "#1f2937"
+    };
+}
+
+function renderEnfermedades(enfermedades = [], expanded = false) {
+    if (!enfermedades.length) {
+        return `
+            <span class="condition-badge condition-empty">
+                Sin enfermedades registradas
+            </span>
+        `;
+    }
+
+    const visibles = expanded ? enfermedades : enfermedades.slice(0, 3);
+    const faltantes = Math.max(enfermedades.length - 3, 0);
+
+    const tags = visibles.map(e => {
+        const estilo = obtenerEstiloEnfermedad(e);
+        return `
+        <span class="condition-badge"
+              style="--tag-bg:${estilo.bg};--tag-text:${estilo.text};--tag-border:${estilo.border};">${e}</span>
+    `;
+    }).join("");
+
+    if (enfermedades.length <= 3) return tags;
+
+    const boton = expanded
+        ? `<button class="btn-see-more" data-expanded="true">- Menos</button>`
+        : `<button class="btn-see-more" data-expanded="false">+${faltantes}</button>`;
+
+    return `${tags}${boton}`;
+}
+
 btnAddPatient.addEventListener("click", () => {
     modal.style.display = "flex";
 });
 
 btnCloseModal.addEventListener("click", cerrarModal);
+btnLogout?.addEventListener("click", () => {
+    logout();
+});
+
+function cerrarAccountMenu() {
+    if (!accountMenuWrap || !accountMenuBtn) return;
+    accountMenuWrap.classList.remove("open");
+    accountMenuBtn.setAttribute("aria-expanded", "false");
+}
+
+accountMenuBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const isOpen = accountMenuWrap.classList.toggle("open");
+    accountMenuBtn.setAttribute("aria-expanded", String(isOpen));
+});
+
+window.addEventListener("click", (e) => {
+    if (!accountMenuWrap?.contains(e.target)) {
+        cerrarAccountMenu();
+    }
+});
+
+window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") cerrarAccountMenu();
+});
 
 window.addEventListener("click", (e) => {
     if (e.target === modal) cerrarModal();
@@ -119,6 +207,15 @@ async function cargarDatosCuidador() {
             .join(" ");
 
         document.getElementById("caregiver-name").textContent = nombreCorto;
+
+        const initials = nombreCorto
+            .split(" ")
+            .map(part => part[0] || "")
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+        if (caregiverAvatar) caregiverAvatar.textContent = initials;
+
         document.getElementById("link-code").textContent =
             cuidador.codigoVinculacion;
 
@@ -161,20 +258,48 @@ async function cargarPacientes() {
 
     try {
         const pacientes = await conRetry(() => obtenerPacientesDelCuidador(), 1);
+        const pacientesConDetalle = await Promise.all(
+            pacientes.map(async (paciente) => {
+                const enfermedadesLista = Array.isArray(paciente.enfermedadesCronicas)
+                    ? paciente.enfermedadesCronicas
+                    : [];
+
+                if (enfermedadesLista.length > 0) {
+                    return paciente;
+                }
+
+                try {
+                    const detalle = await conRetry(
+                        () => obtenerPacientePorId(paciente.id),
+                        1
+                    );
+
+                    return {
+                        ...paciente,
+                        enfermedadesCronicas: detalle.enfermedadesCronicas || []
+                    };
+                } catch {
+                    return {
+                        ...paciente,
+                        enfermedadesCronicas: []
+                    };
+                }
+            })
+        );
 
         patientCount.textContent =
-            `Pacientes Asignados (${pacientes.length})`;
+            `Pacientes Asignados (${pacientesConDetalle.length})`;
 
         patientContainer.innerHTML = "";
 
-        if (!pacientes.length) {
+        if (!pacientesConDetalle.length) {
             patientContainer.innerHTML = `
                 <div class="patients-loading">No hay pacientes registrados todavia.</div>
             `;
             return;
         }
 
-        pacientes.forEach(p => {
+        pacientesConDetalle.forEach(p => {
             const initials = p.name
                 .split(" ")
                 .map(n => n[0])
@@ -183,8 +308,6 @@ async function cargarPacientes() {
                 .toUpperCase();
 
             const enfermedades = p.enfermedadesCronicas || [];
-            const enfermedadesVisibles = enfermedades.slice(0, 3);
-            const enfermedadesOcultas = enfermedades.slice(3);
 
             const card = document.createElement("div");
             card.className = "patient-card";
@@ -204,16 +327,7 @@ async function cargarPacientes() {
                         </div>
 
                         <div class="patient-conditions">
-                            ${enfermedadesVisibles.map(e =>
-                                `<span class="condition-badge">${e}</span>`
-                            ).join("")}
-
-                            ${enfermedades.length > 3
-                                ? `<button class="btn-see-more" data-expanded="false">
-                                        +${enfermedadesOcultas.length}
-                                   </button>`
-                                : ""
-                            }
+                            ${renderEnfermedades(enfermedades, false)}
                         </div>
                     </div>
                 </div>
@@ -245,39 +359,17 @@ async function cargarPacientes() {
                 });
 
             // 🔹 Expandir / contraer enfermedades
-            const btnSeeMore = card.querySelector(".btn-see-more");
+            const conditionsDiv = card.querySelector(".patient-conditions");
+            conditionsDiv.addEventListener("click", (e) => {
+                const btn = e.target.closest(".btn-see-more");
+                if (!btn) return;
 
-            if (btnSeeMore) {
-                btnSeeMore.addEventListener("click", function () {
-                    const expanded = this.dataset.expanded === "true";
-                    const conditionsDiv =
-                        card.querySelector(".patient-conditions");
-
-                    if (expanded) {
-                        conditionsDiv.innerHTML = `
-                            ${enfermedadesVisibles.map(e =>
-                                `<span class="condition-badge">${e}</span>`
-                            ).join("")}
-                            <button class="btn-see-more" data-expanded="false">
-                                +${enfermedadesOcultas.length}
-                            </button>
-                        `;
-                    } else {
-                        conditionsDiv.innerHTML = `
-                            ${enfermedades.map(e =>
-                                `<span class="condition-badge">${e}</span>`
-                            ).join("")}
-                            <button class="btn-see-more" data-expanded="true">
-                                - Menos
-                            </button>
-                        `;
-                    }
-
-                    // Volver a enlazar evento
-                    conditionsDiv.querySelector(".btn-see-more")
-                        .addEventListener("click", arguments.callee);
-                });
-            }
+                const isExpanded = btn.dataset.expanded === "true";
+                conditionsDiv.innerHTML = renderEnfermedades(
+                    enfermedades,
+                    !isExpanded
+                );
+            });
 
             patientContainer.appendChild(card);
         });

@@ -1,7 +1,19 @@
-import { isAuthenticated } from "../core/auth.js";
+import {
+    isAuthenticated,
+    startSessionExpiryWatcher,
+    logout
+} from "../core/auth.js";
 
 export function protectPage() {
-    if (!isAuthenticated()) {
-        window.location.href = "/index.html";
-    }
+    const enforceAuth = () => {
+        if (!isAuthenticated()) {
+            logout();
+            return;
+        }
+
+        startSessionExpiryWatcher();
+    };
+
+    enforceAuth();
+    window.addEventListener("pageshow", enforceAuth);
 }

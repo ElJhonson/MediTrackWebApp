@@ -6,6 +6,8 @@
 }
 
 .section-title {
+    font-family: var(--font-primary);
+    font-weight: 600;
     font-size: 1.3rem;
     margin-bottom: 1.2rem;
     color: #555;

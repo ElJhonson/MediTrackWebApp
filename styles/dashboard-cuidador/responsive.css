@@ -8,12 +8,27 @@
         gap: 12px;
     }
 
+    .topbar-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     .link-code-container {
         align-items: flex-start;
     }
 
     .code-helper {
         display: block;
+    }
+
+    .account-menu-btn {
+        min-width: 100%;
+    }
+
+    .account-menu {
+        margin-top: 0;
+        width: 100%;
     }
 }
 
@@ -47,5 +62,13 @@
     
     .link-code-container { 
         text-align: center; 
+    }
+
+    .topbar-actions {
+        align-items: center;
+    }
+
+    .account-menu {
+        margin-top: 0;
     }
 }
