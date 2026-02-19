@@ -93,6 +93,13 @@ export async function obtenerPacientePorId(id) {
  */
 export async function actualizarPacienteDesdeCuidador(id, dto) {
     const token = getAccessToken();
+    const payload = { ...dto };
+
+    // Compatibilidad: el backend espera "nombre" en vez de "name".
+    if (payload.name && !payload.nombre) {
+        payload.nombre = payload.name;
+        delete payload.name;
+    }
 
     const response = await fetch(`${BASE_URL}/pacientes/${id}`, {
         method: "PUT",
@@ -100,7 +107,7 @@ export async function actualizarPacienteDesdeCuidador(id, dto) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(dto)
+        body: JSON.stringify(payload)
     });
 
     if (!response.ok) {

@@ -1,0 +1,38 @@
+.btn-edit-outline {
+    margin-left: auto;
+    background: var(--white);
+    border: 1px solid var(--perfil-primary);
+    color: var(--perfil-primary);
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid var(--perfil-border-soft);
+}
+
+.btn-save-main {
+    background: var(--perfil-success);
+    color: var(--white);
+    border: none;
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancel-flat {
+    background: var(--white);
+    border: 1px solid var(--danger-light);
+    color: var(--danger);
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}

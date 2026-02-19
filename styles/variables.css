@@ -54,6 +54,28 @@
     --danger-light: #fee2e2;
     --accent-lime-soft: rgba(163, 230, 53, 0.1);
     --accent-lime-medium: rgba(163, 230, 53, 0.4);
+
+    /* === Perfil Paciente Colors === */
+    --perfil-primary: #4a90e2;
+    --perfil-success: #10b981;
+    --perfil-bg-body: #f8fafc;
+    --perfil-text-dark: #1e293b;
+    --perfil-border: #e2e8f0;
+    --perfil-border-soft: #f1f5f9;
+    --perfil-card-shadow: rgba(0, 0, 0, 0.03);
+    --perfil-avatar-bg: #dbeafe;
+    --perfil-avatar-text: #1e40af;
+    --perfil-input-disabled-bg: #fcfdfe;
+    --perfil-eye-border: #d1d5db;
+    --perfil-eye-text: #111111;
+    --perfil-eye-hover-bg: #f3f4f6;
+    --perfil-eye-hover-border: #9ca3af;
+    --perfil-tag-bg-fallback: #f1f5f9;
+    --perfil-tag-text-fallback: #334155;
+    --perfil-tag-border-fallback: rgba(15, 23, 42, 0.08);
+    --perfil-remove-tag-bg: rgba(15, 23, 42, 0.12);
+    --perfil-remove-tag-bg-hover: rgba(15, 23, 42, 0.2);
+    --perfil-focus-primary: #1e3a8a;
 }
 
 /* ========================================

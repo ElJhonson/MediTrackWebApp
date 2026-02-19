@@ -1,0 +1,58 @@
+.section-label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-height: 42px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    background: var(--tag-bg, var(--perfil-tag-bg-fallback));
+    color: var(--tag-text, var(--perfil-tag-text-fallback));
+    border: 1px solid var(--tag-border, var(--perfil-tag-border-fallback));
+}
+
+.tag-text {
+    line-height: 1.2;
+}
+
+.remove-tag {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    background: var(--perfil-remove-tag-bg);
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.remove-tag:hover {
+    background: var(--perfil-remove-tag-bg-hover);
+    transform: scale(1.08);
+}
+
+.remove-tag:focus-visible {
+    outline: 2px solid var(--perfil-focus-primary);
+    outline-offset: 1px;
+}

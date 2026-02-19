@@ -21,6 +21,42 @@ const linkCode = document.getElementById("link-code");
 
 protectPage();
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function esErrorRedFetch(error) {
+    const message = String(error?.message || "").toLowerCase();
+    return error?.name === "AbortError"
+        || (error instanceof TypeError && message.includes("failed to fetch"));
+}
+
+async function conRetry(operacion, retries = 1) {
+    let lastError;
+
+    for (let attempt = 0; attempt <= retries; attempt += 1) {
+        try {
+            return await operacion();
+        } catch (error) {
+            lastError = error;
+            if (!esErrorRedFetch(error) || attempt === retries) {
+                throw error;
+            }
+            await sleep(300);
+        }
+    }
+
+    throw lastError;
+}
+
+function setPacientesLoading(loading) {
+    if (loading) {
+        patientContainer.innerHTML = `
+            <div class="patients-loading">Cargando pacientes...</div>
+        `;
+    }
+}
+
 btnAddPatient.addEventListener("click", () => {
     modal.style.display = "flex";
 });
@@ -74,7 +110,7 @@ btnCopy.addEventListener("click", async () => {
 
 async function cargarDatosCuidador() {
     try {
-        const cuidador = await obtenerMisDatosCuidador();
+        const cuidador = await conRetry(() => obtenerMisDatosCuidador(), 1);
 
         const nombreCorto = cuidador.name
             .trim()
@@ -87,6 +123,11 @@ async function cargarDatosCuidador() {
             cuidador.codigoVinculacion;
 
     } catch (error) {
+        if (esErrorRedFetch(error)) {
+            console.warn("Error de red temporal al cargar datos del cuidador.");
+            return;
+        }
+
         console.error(error);
         logout();
     }
@@ -116,13 +157,22 @@ registerForm.addEventListener("submit", async (e) => {
 });
 
 async function cargarPacientes() {
+    setPacientesLoading(true);
+
     try {
-        const pacientes = await obtenerPacientesDelCuidador();
+        const pacientes = await conRetry(() => obtenerPacientesDelCuidador(), 1);
 
         patientCount.textContent =
             `Pacientes Asignados (${pacientes.length})`;
 
         patientContainer.innerHTML = "";
+
+        if (!pacientes.length) {
+            patientContainer.innerHTML = `
+                <div class="patients-loading">No hay pacientes registrados todavia.</div>
+            `;
+            return;
+        }
 
         pacientes.forEach(p => {
             const initials = p.name
@@ -233,6 +283,13 @@ async function cargarPacientes() {
         });
 
     } catch (error) {
+        if (esErrorRedFetch(error)) {
+            patientContainer.innerHTML = "";
+            alert("No se pudo conectar al servidor. Intenta recargar en unos segundos.");
+            return;
+        }
+
+        patientContainer.innerHTML = "";
         console.error("Error cargando pacientes:", error);
         alert("No se pudieron cargar los pacientes.");
     }

@@ -18,6 +18,34 @@
     font-size: 1.15rem;
 }
 
+#patient-list-container {
+    max-height: 62vh;
+    overflow-y: auto;
+    padding-right: 0.4rem;
+}
+
+#patient-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#patient-list-container::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 999px;
+}
+
+#patient-list-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.patients-loading {
+    padding: 1rem 0.2rem;
+    text-align: center;
+    color: var(--text-gray);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 .patient-card {
     display: flex;
     flex-direction: column;

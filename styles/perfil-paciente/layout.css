@@ -1,0 +1,39 @@
+.profile-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 25px var(--perfil-card-shadow);
+    border: 1px solid var(--perfil-border);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 35px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--perfil-border-soft);
+}
+
+.avatar-large {
+    width: 80px;
+    height: 80px;
+    background: var(--perfil-avatar-bg);
+    color: var(--perfil-avatar-text);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.patient-name {
+    font-size: 24px;
+    margin: 0 0 5px 0;
+}
+
+.status-badge {
+    color: var(--text-muted);
+    font-size: 14px;
+}

@@ -1,0 +1,81 @@
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--perfil-border);
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+input:disabled {
+    background: var(--perfil-input-disabled-bg);
+    border-color: transparent;
+    color: var(--perfil-text-dark);
+    font-weight: 500;
+}
+
+.phone-input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-toggle-eye {
+    width: 44px;
+    min-width: 44px;
+    height: 42px;
+    border: 1px solid var(--perfil-eye-border);
+    background: var(--white);
+    color: var(--perfil-eye-text);
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-toggle-eye:hover {
+    background: var(--perfil-eye-hover-bg);
+    border-color: var(--perfil-eye-hover-border);
+}
+
+.btn-toggle-eye:focus-visible {
+    outline: 2px solid var(--perfil-eye-text);
+    outline-offset: 2px;
+}
+
+.eye-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.add-tag-box {
+    display: flex;
+    gap: 10px;
+    max-width: 400px;
+    margin-top: 10px;
+}
+
+.btn-add-tag {
+    background: var(--perfil-primary);
+    color: var(--white);
+    border: none;
+    padding: 0 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
